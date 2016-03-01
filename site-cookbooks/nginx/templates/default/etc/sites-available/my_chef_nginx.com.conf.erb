@@ -1,0 +1,20 @@
+server {
+    listen       80;
+    server_name  <%= @site_domain %>;
+    root <%= @root %>;
+    index index.html index.php;
+    access_log      /var/log/nginx/<%= @site_domain %>.access.log;
+    error_log       /var/log/nginx/<%= @site_domain %>.error.log;
+
+    location / {
+            index  index.php index.html index.htm;
+            try_files $uri $uri/ /index.php?$uri&$args;
+    }
+
+    location ~ \.php$ {
+            fastcgi_pass  unix:/var/run/php5-fpm.sock;
+            fastcgi_index   index.php;
+            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+            include        fastcgi_params;
+    }
+}

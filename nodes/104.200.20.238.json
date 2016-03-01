@@ -4,7 +4,10 @@
     "recipe[site_user]",
     "recipe[sudo]",
     "recipe[firewall]",
-    "recipe[openssh]"
+    "recipe[openssh]",
+    "recipe[nginx]",
+    "recipe[php]",
+    "recipe[mysql]"
   ],
   "authorization": {
     "sudo": {
